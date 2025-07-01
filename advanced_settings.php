@@ -18,7 +18,6 @@ if (!empty($_POST)) {
   $_SESSION['toast'] = 'update'; // トースト用フラグ
   header('Location: advanced_settings.php');
   exit();
-  
 } else {
   $stmt = $db->prepare('SELECT * FROM members WHERE id=?');
   $stmt->execute(array($_SESSION['id']));
@@ -78,10 +77,14 @@ if (!empty($_POST)) {
               <h3 id="dialog-heading">アカウントを削除しますか？</h3>
             </header>
             <div>
-              <p id="dialog-caption">このチャンネルに送信されたすべてのメッセージも削除されます。</p>
+              <p id="dialog-caption">このアカウントで送信したすべてのメッセージも削除されます。<br />削除を確定するにはパスワードを入力してください。</p>
             </div>
-            <form action="backends/delete_channel.php" method="post">
-              <input type="hidden" name="chid" value="<?= $id ?>">
+            <form action="backends/delete_account.php" method="post">
+              <label>
+                <span class="label-text">パスワード<span class="red">*</span></span>
+                <input type="password" name="password" id="password">
+              </label>
+
               <div id="dialog-select">
                 <button type="button" id="closeButton" class="text-link">
                   <p>キャンセル</p>
@@ -96,31 +99,5 @@ if (!empty($_POST)) {
     </div>
   </div>
 
-  <script>
-    const openButton = document.getElementById('openButton');
-    const modalDialog = document.getElementById('modalDialog');
-
-    // モーダルを開く
-    openButton?.addEventListener('click', async () => {
-      modalDialog.showModal();
-      // モーダルダイアログを表示する際に背景部分がスクロールしないようにする
-      document.documentElement.style.overflow = "hidden";
-    });
-
-    const closeButton = document.getElementById('closeButton');
-
-    // モーダルを閉じる
-    closeButton?.addEventListener('click', () => {
-      modalDialog.close();
-      // モーダルを解除すると、スクロール可能になる
-      document.documentElement.removeAttribute("style");
-    });
-
-    // 背景をクリックしてモーダルを閉じる
-    modalDialog.addEventListener('click', (event) => {
-      if (event.target.closest('#dialogInputArea') === null) {
-        modalDialog.close();
-      }
-    });
-  </script>
+  <script src="scripts/modal.js"></script>
 </body>

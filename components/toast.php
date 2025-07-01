@@ -35,6 +35,18 @@
       <img src="icons/mingcute--check-circle-line.svg">
       <p class="toast-text">チャンネルを削除しました</p>
     </div>
+  <!-- アカウント削除時 -->
+  <?php elseif ($_SESSION['toast'] == 'acdel'): ?>
+     <div class="toast flex ai-center gap-5">
+      <img src="icons/mingcute--check-circle-line.svg">
+      <p class="toast-text">アカウントを削除しました</p>
+    </div>
+  <!-- アカウント削除時（パスワードエラー） -->
+  <?php elseif ($_SESSION['toast'] == 'acdel-error'): ?>
+     <div class="toast flex ai-center gap-5">
+      <img src="icons/mingcute--close-circle-line.svg">
+      <p class="toast-text">パスワードが正しくないため、アカウントを削除できません</p>
+    </div>
   <!-- セッションタイムアウト時 -->
   <?php elseif ($_SESSION['toast'] == 'timeout'): ?>
      <div class="toast flex ai-center gap-5">
