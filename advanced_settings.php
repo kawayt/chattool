@@ -14,6 +14,7 @@ if (!empty($_POST)) {
     ':id' => $_SESSION['id']
   ]);
 
+  $_SESSION['admin'] = $admin;
   $_SESSION['toast'] = 'update'; // トースト用フラグ
   header('Location: advanced_settings.php');
   exit();
@@ -41,7 +42,7 @@ if (!empty($_POST)) {
   <?php require 'components/toast.php'; ?>
   <div class="container flex">
     <div id="sidebar">
-      <?php require 'components/sidebar.php' ?>
+      <?php require 'components/sidebar.php'; ?>
     </div>
     <div id="content">
       <div id="titlebar">
@@ -64,6 +65,8 @@ if (!empty($_POST)) {
           <p class="head-border">高度な操作</p>
           <br />
           <button type="button" id="openButton" class="button delete-btn">アカウントを削除</button>
+
+          <input type="hidden" name="empty" value="a">
         </form>
       </div>
 
