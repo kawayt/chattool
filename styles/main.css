@@ -1,0 +1,170 @@
+@charset "UTF-8";
+
+#content {
+  width: 80%;
+}
+
+#content > #titlebar {
+  height: 50px;
+  padding: 10px 15px;
+  border-bottom: 1px solid var(--border2);
+  background: var(--bg);
+}
+
+#page-name {
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+#page-name, #description {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+#m1 {
+  position: fixed;
+  bottom: 0;
+  width: inherit;
+  z-index: 10;
+}
+
+/* ブラー効果 */
+#m1::before {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  content: "";
+  backdrop-filter: blur(1rem);
+  mask-image: linear-gradient(
+    to bottom,
+    rgb(0 0 0 / 0%) 0%,
+    rgb(0 0 0 / 4.9%) 7.75%,
+    rgb(0 0 0 / 10.4%) 11.25%,
+    rgb(0 0 0 / 45%) 23.55%,
+    rgb(0 0 0 / 55%) 26.45%,
+    rgb(0 0 0 / 89.6%) 38.75%,
+    rgb(0 0 0 / 95.1%) 42.25%,
+    rgb(0 0 0 / 100%) 50%
+  );
+}
+#m1::after {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  top: 25%;
+  content: "";
+  backdrop-filter: blur(2rem);
+  mask-image: linear-gradient(
+    to bottom,
+    rgb(0 0 0 / 0%) 0%,
+    rgb(0 0 0 / 4.9%) 15.5%,
+    rgb(0 0 0 / 10.4%) 22.5%,
+    rgb(0 0 0 / 45%) 47.1%,
+    rgb(0 0 0 / 55%) 52.9%,
+    rgb(0 0 0 / 89.6%) 77.5%,
+    rgb(0 0 0 / 95.1%) 91.9%,
+    rgb(0 0 0 / 100%) 100%
+  );
+}
+
+#m2 {
+  margin: 0 15px 15px;
+  border: 1px solid var(--border2);
+  border-radius: var(--radius);
+  background: var(--bg);
+  box-shadow: 0 5px 15px #001b443b;
+}
+
+#message-text {
+  field-sizing: content;
+  padding: 10px;
+  border: 0;
+  resize: none;
+  width: 100%;
+  outline: 1px solid transparent;
+  background: black;
+  color: transparent;
+  background-clip: text;
+  background-attachment: fixed;
+  caret-color: black;
+  min-height: 44px;
+}
+
+#send-icon, #image-icon {
+  width: 28px;
+  height: 28px;
+}
+
+#toolbox {
+  padding: 0 10px 10px;
+}
+
+#toolbox button {
+  width: 28px;
+  height: 28px;
+}
+
+/* メッセージ部分 */
+#message-list {
+  padding: 10px 0 115px;
+}
+.message-wrapper {
+  padding: 5px 20px;
+  position: relative;
+}
+.message-wrapper:hover {
+  background: #f0f0f0;
+}
+.message-wrapper > div > div > .message-name {
+  font-size: 0.8rem;
+  margin-bottom: 2px;
+}
+.message-wrapper > div > div > .message-content {
+  display: inline-block;
+  padding: 6px 10px 8px 10px;
+  width: fit-content;
+  max-width: 70%;
+  background: gainsboro;
+  border-radius: var(--radius);
+}
+.message-wrapper > div > div > .message-time {
+  font-size: 0.8rem;
+  color: grey;
+}
+.message-wrapper.my {
+  text-align: right;
+}
+.message-wrapper.my > div > div > .message-content {
+  text-align: left !important;
+  background: #d6c0ff;
+}
+
+.message-action {
+  display: none;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+.message-wrapper.my > .message-action {
+  right: unset;
+  left: 10px;
+}
+.message-wrapper:hover .message-action {
+  display: block;
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+}
+
+.v1 {
+  width: 45px;
+}
+.v2 {
+  width: calc(100% - 45px);
+}

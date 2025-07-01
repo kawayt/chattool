@@ -1,0 +1,203 @@
+@charset "UTF-8";
+
+.text-link {
+  color: var(--accent2);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+label {
+  display: block;
+}
+
+.label-text {
+  display: block;
+  margin: 1.5rem 0 0.5rem 0;
+  font-weight: bold;
+  color: #333;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+textarea {
+  width: 100%;
+  padding: 0.7em;
+  border: 1px solid #ccc;
+  border-radius: var(--radius);
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+
+.button,
+.button02,
+input[type="submit"],
+input[type="button"] {
+  background: #f1e9ff;
+  color: var(--accent2);
+  padding: 0.6rem 1.0rem;
+  border: none;
+  border-radius: var(--radius);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.button:hover,
+.button02:hover,
+input[type="submit"]:hover,
+input[type="button"]:hover {
+  background: var(--hover);
+}
+
+.delete-btn {
+  background: #ffdede;
+  color: #ff0000;
+}
+
+.delete-btn:hover {
+  background: #ffc0c0;
+}
+
+.btn {
+  margin: 0 0 0 auto;
+  align-items: center;
+  gap: 40px;
+  flex-direction: row-reverse;
+  margin-top: 30px;
+}
+
+.error {
+  color: red;
+  font-size: 0.8rem;
+  margin-top: 0;
+}
+
+form {
+  max-width: 540px;
+}
+
+form.main-form {
+  margin: 20px;
+}
+
+.input-error {
+  background: #ffdfdf;
+  border: 1px solid red !important;
+}
+
+.error-icon {
+  width: 18px;
+  height: 18px;
+}
+
+.upload::file-selector-button {
+  height: 40px;
+  padding: 0 12px;
+  margin-right: 10px;
+  background: #e9e9e9;
+  border: unset;
+  border-radius: var(--radius);
+}
+.upload::file-selector-button:hover {
+  background: #d4d4d4;
+}
+
+.edit-container {
+  height: calc(100vh - 50px);
+  overflow-y: scroll;
+}
+
+/* トグルスイッチ */
+.toggleButton {
+  position: relative;
+  display: block;
+  width: 60px;
+  height: 30px;
+  border: 1px solid #cccccc;
+  border-radius: 9999px;
+  background-color: #dddddd;
+  cursor: pointer;
+}
+
+.toggleButton:has(:focus-visible) {
+  outline: auto;
+  outline: auto -webkit-focus-ring-color;
+}
+
+.toggleButton:has(:checked) {
+  background-color: #5400ff;
+}
+
+.toggleButton__checkbox {
+  appearance: none;
+  position: absolute;
+  top: 50%;
+  left: 1px;
+  width: 26px;
+  height: 26px;
+  border: 1px solid #cccccc;
+  border-radius: 9999px;
+  transform: translateY(-50%);
+  outline: none;
+  background-color: #ffffff;
+  transition: left 0.2s;
+  cursor: pointer;
+}
+
+.toggleButton__checkbox:checked {
+  left: calc(100% - 27px);
+}
+
+.preview-img {
+  width: 200px;
+  height: 200px;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  margin-bottom: 10px;
+}
+
+/* モーダル */
+.dialog::backdrop {
+  backdrop-filter: blur(8px);
+}
+
+.dialog {
+  position: fixed;
+  inset: 0;
+  margin: auto;
+  box-shadow: 0 5px 15px #001b443b;
+  border: unset;
+  border-radius: var(--radius);
+  padding: 20px;
+  max-width: 520px;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  } to {
+    opacity: 1;
+  }
+}
+.dialog[open] {
+  display: unset;
+  animation-name: fadeIn;
+  animation-fill-mode: forwards;
+  animation-duration: 100ms;
+  animation-timing-function: ease-out;
+}
+
+#dialog-caption {
+ margin: 5px 0 20px;
+}
+
+#dialog-select {
+  text-align: right;
+}
+
+#closeButton {
+  padding: 0.6rem 1.0rem;
+}

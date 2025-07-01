@@ -1,0 +1,29 @@
+@charset "UTF-8";
+
+#artwork {
+  background: var(--accent1);
+  min-height: 100vh;
+  width: 40%;
+  justify-content: center;
+  align-items: center;
+}
+
+#login {
+  margin: 80px;
+  width: 60%;
+  justify-content: center;
+  align-items: center;
+}
+
+#login div {
+  width: 100%;
+}
+
+#logo-icon {
+  width: 150px;
+  height: 150px;
+}
+
+h1 {
+  margin: 0 0 40px 0;
+}
