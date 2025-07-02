@@ -117,7 +117,7 @@ $channels = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 <div id="bottom">
   <div class="flex ai-center gap-5">
-    <img class="avatar" src="uploads/<?= $_SESSION['avatar'] ?>">
+    <img class="avatar" src="uploads/<?php isset($_SESSION['avatar']) ? print $_SESSION['avatar'] : print 'default.svg' ?>" class="avatar">
     <div class="of-hidden">
       <p id="my-name" class="ellipsis-one-line"><?= $_SESSION['name'] ?></p>
       <p id="my-id" class="ellipsis-one-line">#<?= $_SESSION['id'] ?></p>
