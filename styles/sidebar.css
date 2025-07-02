@@ -23,6 +23,11 @@
   font-size: 1.3rem;
 }
 
+#nav-container {
+  height: calc(100vh - 50px - 54px);
+  overflow-y: scroll;
+}
+
 #nav-container .nav {
   padding: 10px 0;
 }
@@ -103,4 +108,18 @@
   content: '';
   position: absolute;
   inset: 0;
+}
+
+#bottom {
+  height: 54px;
+  padding: 5px;
+  border-top: 1px solid var(--border2);
+}
+
+#my-name {
+  font-weight: 600;
+}
+
+#my-id {
+  font-size: 0.9rem;
 }

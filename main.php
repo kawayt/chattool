@@ -79,8 +79,8 @@ if (!empty($_GET)) {
     <div id="content">
       <!-- タイトルバー -->
       <div id="titlebar" class="flex gap-10">
-        <h1 id="page-name"><?= $ch['name']; ?></h1>
-        <p id="description"><?= $ch['description']; ?></p>
+        <h1 id="page-name" class="ellipsis-one-line"><?= $ch['name']; ?></h1>
+        <p id="description" class="ellipsis-one-line"><?= $ch['description']; ?></p>
       </div>
 
       <!-- メッセージ表示 -->

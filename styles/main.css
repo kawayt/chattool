@@ -1,5 +1,11 @@
 @charset "UTF-8";
 
+/* スクロール可能なエリア */
+.scrollable {
+  height: calc(100vh - 50px);
+  overflow-y: scroll;
+}
+
 #content {
   width: 80%;
 }
@@ -14,11 +20,6 @@
 #page-name {
   font-weight: 600;
   font-size: 1.1rem;
-}
-#page-name, #description {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 
 #m1 {

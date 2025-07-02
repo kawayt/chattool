@@ -69,7 +69,7 @@ if (!empty($_POST)) {
     </div>
     <div id="content">
       <div id="titlebar">
-        <h1 id="page-name">チャンネルを編集: <?= $name; ?></h1>
+        <h1 id="page-name" class="ellipsis-one-line">チャンネルを編集: <?= $name; ?></h1>
       </div>
       <div class="scrollable">
         <form action="" method="post" class="main-form">

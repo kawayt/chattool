@@ -17,6 +17,7 @@ if (!empty($_POST)) {
       $_SESSION['name'] = $member['name'];
       $_SESSION['bio'] = $member['bio'];
       $_SESSION['admin'] = $member['admin'];
+      $_SESSION['avatar'] = $member['avatar'];
       $_SESSION['time'] = time();
 
       $_SESSION['toast'] = 'login'; // トースト用フラグ

@@ -77,7 +77,7 @@ if (!empty($_POST)) {
     </div>
     <div id="content">
       <div id="titlebar">
-        <h1 id="page-name">パスワードを変更</h1>
+        <h1 id="page-name" class="ellipsis-one-line">パスワードを変更</h1>
       </div>
       <div class="scrollable">
         <form action="" method="post" class="main-form">

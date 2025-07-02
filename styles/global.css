@@ -37,6 +37,14 @@
 .ml-auto {
   margin-left: auto;
 }
+.of-hidden {
+  overflow: hidden;
+}
+.ellipsis-one-line {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 
 /* 共通 */
 * {
@@ -66,12 +74,6 @@ a {
 }
 li {
   list-style-type: none;
-}
-
-/* スクロール可能なエリア */
-.scrollable {
-  height: calc(100vh - 50px);
-  overflow-y: scroll;
 }
 
 /* トースト表示 */
@@ -112,22 +114,4 @@ li {
 }
 .toast-text {
   margin-bottom: 2px;
-}
-
-/* ラベル */
-.head-border {
-  display: flex;
-  align-items: center;
-}
-.head-border:before, .head-border:after {
-  content: "";
-  height: 1px;
-  flex-grow: 1;
-  background: #ccc;
-}
-.head-border:before {
-  margin-right: 1rem;
-}
-.head-border:after {
-  margin-left: 1rem;
 }

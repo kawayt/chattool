@@ -7,6 +7,7 @@ require('backends/login_check.php');
 if (!empty($_POST)) {
   $name = htmlspecialchars($_POST['name'], ENT_QUOTES);
   $bio = htmlspecialchars($_POST['bio'], ENT_QUOTES);
+  $avatar_flag = false;
 
   // 名前は必須項目
   if ($_POST['name'] == "") {
@@ -27,7 +28,6 @@ if (!empty($_POST)) {
       $_POST['bio'] = NULL;
     }
   }
-
 
   // プロフィール画像
   $upload_dir = 'uploads/';
@@ -70,24 +70,35 @@ if (!empty($_POST)) {
 
     // 移動
     if (move_uploaded_file($tmp_name, $destination)) {
-      echo 'アップロード成功！<br>';
+      $avatar_flag = true;
     } else {
-      echo 'ファイルの保存に失敗しました。';
+      exit('ファイルの保存に失敗しました');
     }
-  } else {
-    echo 'ファイルが選択されていないか、エラーが発生しました。';
   }
 
   // エラーがなければデータベースを更新
   if (empty($error)) {
-    $sql = $db->prepare('UPDATE members
+    // プロフィール画像の更新を含む
+    if ($avatar_flag === true) {
+      $sql = $db->prepare('UPDATE members
       SET name = :name, bio = :bio, avatar = :avatar WHERE id = :id');
-    $sql->execute([
-      ':name' => $_POST['name'],
-      ':bio' => $_POST['bio'],
-      ':avatar' => $new_name,
-      ':id' => $_SESSION['id']
-    ]);
+      $sql->execute([
+        ':name' => $_POST['name'],
+        ':bio' => $_POST['bio'],
+        ':avatar' => $new_name,
+        ':id' => $_SESSION['id']
+      ]);
+
+      $_SESSION['avatar'] = $new_name;
+    } else {
+      $sql = $db->prepare('UPDATE members
+      SET name = :name, bio = :bio WHERE id = :id');
+      $sql->execute([
+        ':name' => $_POST['name'],
+        ':bio' => $_POST['bio'],
+        ':id' => $_SESSION['id']
+      ]);
+    }
 
     $_SESSION['name'] = $_POST['name'];
     $_SESSION['bio'] = $_POST['bio'];
@@ -118,7 +129,7 @@ if (!empty($_POST)) {
     </div>
     <div id="content">
       <div id="titlebar">
-        <h1 id="page-name">プロフィールを変更</h1>
+        <h1 id="page-name" class="ellipsis-one-line">プロフィールを変更</h1>
       </div>
       <div class="scrollable">
         <form action="" method="post" class="main-form" enctype="multipart/form-data">

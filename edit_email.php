@@ -61,7 +61,7 @@ $current_email = $_SESSION['email'];
     </div>
     <div id="content">
       <div id="titlebar">
-        <h1 id="page-name">メールアドレスを変更</h1>
+        <h1 id="page-name" class="ellipsis-one-line">メールアドレスを変更</h1>
       </div>
       <div class="scrollable">
         <form action="" method="post" class="main-form">
