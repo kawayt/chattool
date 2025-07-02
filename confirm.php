@@ -30,11 +30,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $_SESSION['name'] = $member['name'];
   $_SESSION['bio'] = $member['bio'];
   $_SESSION['admin'] = $member['admin'];
+  $_SESSION['avatar'] = $member['avatar'];
   $_SESSION['time'] = time();
 
   unset($_SESSION['join']); // セッション削除
   $_SESSION['toast'] = 'signup'; // トースト用フラグ
-  
+
   header('Location: main.php');
   exit();
 }
@@ -56,39 +57,47 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 
 <body>
-  <div class="container">
-    <h1>ユーザー登録確認画面</h1>
+  <?php require 'components/toast.php'; ?>
+  <div class="container flex">
+    <div id="artwork" class="flex">
+      <img id="logo-icon" src="icons/fluent-color--people-chat-48.svg">
+    </div>
+    <div id="login" class="flex">
+      <div>
+        <h1>アカウントを作成しますか？</h1>
 
-    <!-- 再送信のための空フォーム（POST確認用） -->
-    <form action="" method="post">
-      <!-- hiddenフィールドを使って POST データであることを明示 -->
-      <input type="hidden" name="action" value="submit">
+        <form action="" method="post">
+          <!-- hiddenフィールドを使って POST データであることを明示 -->
+          <input type="hidden" name="action" value="submit">
 
-      <p>
-        メールアドレス：
-        <span class="check"><?php echo htmlspecialchars($_SESSION['join']['email'], ENT_QUOTES); ?></span>
-      </p>
-      <p>
-        パスワード：
-        <span class="check">[非表示]</span>
-      </p>
-      <p>
-        名前：
-        <span class="check"><?php echo htmlspecialchars($_SESSION['join']['name'], ENT_QUOTES); ?></span>
-      </p>
+          <p>
+            メールアドレス：
+            <span class="check"><?php echo htmlspecialchars($_SESSION['join']['email'], ENT_QUOTES); ?></span>
+          </p>
+          <p>
+            パスワード：
+            <span class="check">[非表示]</span>
+          </p>
+          <p>
+            名前：
+            <span class="check"><?php echo htmlspecialchars($_SESSION['join']['name'], ENT_QUOTES); ?></span>
+          </p>
+          <br />
 
-      <div class="button-container">
-        <!-- 「修正する」ボタン：register.php に戻る -->
-        <input
-          type="button"
-          onclick="event.preventDefault(); location.href='register.php?action=rewrite'"
-          value="修正する"
-          name="rewrite">
+          <div class="button-container">
+            <!-- 「修正する」ボタン：register.php に戻る -->
+            <input
+              type="button"
+              onclick="event.preventDefault(); location.href='register.php?action=rewrite'"
+              value="修正する"
+              name="rewrite">
 
-        <!-- 「登録する」ボタン：POSTでこのconfirm.phpに送信され、DB登録 -->
-        <input type="submit" value="登録する" name="registration">
+            <!-- 「登録する」ボタン：POSTでこのconfirm.phpに送信され、DB登録 -->
+            <input type="submit" value="作成する" name="registration">
+          </div>
+        </form>
       </div>
-    </form>
+    </div>
   </div>
 </body>
 
