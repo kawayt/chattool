@@ -17,9 +17,11 @@ $channels = $stmt->fetchAll(PDO::FETCH_ASSOC);
   <div class="nav">
     <div class="category flex ai-center">
       <p class="category-name ellipsis-one-line">チャンネル</p>
-      <a href="create_ch.php" id="add-link" class="flex ai-center">
-        <img id="add-icon" src="icons/mingcute--add-line.svg">
-      </a>
+      <?php if ($_SESSION['admin'] === 1): ?>
+        <a href="create_ch.php" id="add-link" class="flex ai-center">
+          <img id="add-icon" src="icons/mingcute--add-line.svg">
+        </a>
+      <?php endif ?>
     </div>
     <ul>
       <?php if (!empty($channels)): ?>
@@ -30,13 +32,15 @@ $channels = $stmt->fetchAll(PDO::FETCH_ASSOC);
               <a class="nav-a1 of-hidden" href="main.php?channel=<?= $channel['id'] ?>">
                 <p class="ellipsis-one-line"><?= $channel['name']; ?></p>
               </a>
-              <a class="nav-a2 flex jc-center ai-center" href="edit_ch.php?channel=<?= $channel['id'] ?>">
-                <img class="more-icon" src="icons/mingcute--settings-3-line.svg">
-              </a>
+              <?php if ($_SESSION['admin'] === 1): ?>
+                <a class="nav-a2 flex jc-center ai-center" href="edit_ch.php?channel=<?= $channel['id'] ?>">
+                  <img class="more-icon" src="icons/mingcute--settings-3-line.svg">
+                </a>
+              <?php endif ?>
             </div>
           </li>
         <?php endforeach; ?>
-      <?php else : ?> <!-- チャンネルがない場合 -->
+      <?php elseif ($_SESSION['admin'] === 1): ?> <!-- チャンネルがない場合 -->
         <li class="nav-item">
           <div class="nav-div flex ai-center">
             <img class="hash-icon" src="icons/mingcute--add-line.svg">
@@ -100,7 +104,7 @@ $channels = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
   <div class="nav">
     <div class="category flex ai-center">
-      <p class="category-name ellipsis-one-line">このアプリについて</p>
+      <p class="category-name ellipsis-one-line">このアプリ</p>
     </div>
     <ul>
       <li class="nav-item">
