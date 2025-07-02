@@ -42,7 +42,6 @@ if (!empty($_GET)) {
   $stmt3 = $db->prepare('SELECT * FROM messages INNER JOIN members ON messages.acid = members.id WHERE messages.chid=?');
   $stmt3->execute(array($_GET['channel']));
   $ms = $stmt3->fetchAll();
-
 } else {
   // GET送信されていない場合、先頭のチャンネルIDを取得
   $stmt4 = $db->prepare('SELECT * FROM channels ORDER BY id LIMIT 1');
@@ -83,54 +82,58 @@ if (!empty($_GET)) {
         <p id="description" class="ellipsis-one-line"><?= $ch['description']; ?></p>
       </div>
 
-      <!-- メッセージ表示 -->
-      <div class="scrollable">
-        <ul id="message-list">
-          <?php foreach ($ms as $message): ?>
-            <li class="message-wrapper <?php $message['id'] === $_SESSION['id'] ? print 'my' : print ''; ?>">
-              <div class="flex">
-                <div class="v1">
-                  <?php if ($message['id'] !== $_SESSION['id']): ?>
-                    <img src="uploads/<?php isset($message['avatar']) ? print $message['avatar'] : print 'default.svg' ?>" class="avatar">
-                  <?php endif ?>
+      <?php if ($ch['admin_only'] === 0 || $_SESSION['admin'] === 1): ?>
+        <!-- メッセージ表示 -->
+        <div class="scrollable">
+          <ul id="message-list">
+            <?php foreach ($ms as $message): ?>
+              <li class="message-wrapper <?php $message['id'] === $_SESSION['id'] ? print 'my' : print ''; ?>">
+                <div class="flex">
+                  <div class="v1">
+                    <?php if ($message['id'] !== $_SESSION['id']): ?>
+                      <img src="uploads/<?php isset($message['avatar']) ? print $message['avatar'] : print 'default.svg' ?>" class="avatar">
+                    <?php endif ?>
+                  </div>
+                  <div class="v2">
+                    <?php if ($message['id'] !== $_SESSION['id']): ?>
+                      <p class="message-name"><?= $message['name'] ?></p>
+                    <?php endif ?>
+                    <p class="message-content"><?= nl2br($message['content']); ?></p>
+                    <p class="message-time"><?= $message['send_time'] ?></p>
+                  </div>
                 </div>
-                <div class="v2">
-                  <?php if ($message['id'] !== $_SESSION['id']): ?>
-                    <p class="message-name"><?= $message['name'] ?></p>
-                  <?php endif ?>
-                  <p class="message-content"><?= nl2br($message['content']); ?></p>
-                  <p class="message-time"><?= $message['send_time'] ?></p>
-                </div>
-              </div>
-              <?php if ($_SESSION['admin'] === 1 || $message['id'] === $_SESSION['id']): ?>
-                <div class="message-action flex ai-center">
-                  <a href="backends/delete_message.php?message=<?= $message['msid'] ?>&channel=<?= $ch['id'] ?>">
-                    <img id="test-icon" src="icons/mingcute--delete-2-line.svg">
-                  </a>
-                </div>
-              <?php endif ?>
-            </li>
-          <?php endforeach; ?>
-        </ul>
-      </div>
-
-      <!-- メッセージ送信 -->
-      <div id="m1">
-        <div id="m2">
-          <form action="" method="post" id="new-message">
-            <textarea spellcheck=false name="send_message" id="message-text" placeholder="メッセージを入力…"></textarea>
-
-            <div id="toolbox" class="flex ai-center">
-              <button>
-                <img id="image-icon" src="icons/mage--image-plus.svg">
-              </button>
-              <button type="submit" id="send-btn" class="ml-auto">
-                <img id="send-icon" src="icons/mingcute--arrow-up-circle-fill.svg">
-              </button>
-            </div>
-          </form>
+                <?php if ($_SESSION['admin'] === 1 || $message['id'] === $_SESSION['id']): ?>
+                  <div class="message-action flex ai-center">
+                    <a href="backends/delete_message.php?message=<?= $message['msid'] ?>&channel=<?= $ch['id'] ?>">
+                      <img id="test-icon" src="icons/mingcute--delete-2-line.svg">
+                    </a>
+                  </div>
+                <?php endif ?>
+              </li>
+            <?php endforeach; ?>
+          </ul>
         </div>
-      </div>
+
+        <!-- メッセージ送信 -->
+        <div id="m1">
+          <div id="m2">
+            <form action="" method="post" id="new-message">
+              <textarea spellcheck=false name="send_message" id="message-text" placeholder="メッセージを入力…"></textarea>
+
+              <div id="toolbox" class="flex ai-center">
+                <button>
+                  <img id="image-icon" src="icons/mage--image-plus.svg">
+                </button>
+                <button type="submit" id="send-btn" class="ml-auto">
+                  <img id="send-icon" src="icons/mingcute--arrow-up-circle-fill.svg">
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      <?php else: ?>
+        <p id="noauth-error">あなたにはこのチャンネルのメッセージ履歴を表示する権限がありません</p>
+      <?php endif ?>
 
     </div>
   </div>
