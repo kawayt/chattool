@@ -1,7 +1,11 @@
 # チャットツール
 PHP・MySQLの学習で作ったDiscordのようなチャットアプリ
 
+## 動作環境
+ローカルでテストするには XAMPP などで Apache, MySQL を有効化します。
+
 ## ディレクトリ構成
+```
 chattool/
 ├─ backends/
 │ ├─ dbconnect.php（データベース接続）
@@ -16,7 +20,7 @@ chattool/
 │ └─ toast.php（トースト通知）
 ├─ icons
 ├─ scripts/
-│ ├─ imgPreviewer.js（ファイルアップロード時のプレビュー表示）
+│ ├─ imgPreviewer.js（ファイルアップロード時のプレビュー表示）※1
 │ └─ modal.js（モーダルの制御）
 ├─ styles/
 │ ├─ form.css（フォーム）
@@ -37,3 +41,5 @@ chattool/
 ├─ login.php（ログインページ）
 ├─ main.php（チャットページ）
 └─ register.php（アカウント作成ページ）
+```
+※1 [ImgPreviewer](https://github.com/yuki00yossi/ImgPreviewer) を利用
