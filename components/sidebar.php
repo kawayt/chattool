@@ -94,7 +94,7 @@ $channels = $stmt->fetchAll(PDO::FETCH_ASSOC);
       <li class="nav-item">
         <div class="nav-div flex ai-center">
           <img class="hash-icon" src="icons/mingcute--open-door-line.svg">
-          <a class="nav-a1 of-hidden" href="logout.php">
+          <a class="nav-a1 of-hidden" href="backends/logout.php">
             <p class="ellipsis-one-line">ログアウト</p>
           </a>
         </div>
