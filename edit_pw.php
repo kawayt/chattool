@@ -32,9 +32,9 @@ if (!empty($_POST)) {
     $error['new_password2'] = 'blank';
   }
 
-  // パスワードは8文字以上
-  if (!empty($new_pw) && strlen($new_pw) < 8) {
-    $error['new_password'] = 'length';
+  // パスワードは半角英数字で8桁以上16桁以下
+  if (!empty($new_pw) && !preg_match("/\A\w{8,16}\z/", $new_pw)) {
+    $error['new_password'] = 'format';
   }
 
   // 再入力したパスワードが一致するか
@@ -102,8 +102,8 @@ if (!empty($_POST)) {
             <?php if (!empty($error['new_password'])): ?>
               <?php if ($error['new_password'] === 'blank'): ?>
                 <p class="error">新しいパスワードを入力してください。</p>
-              <?php elseif ($error['new_password'] === 'length'): ?>
-                <p class="error">パスワードは8文字以上で入力してください。</p>
+              <?php elseif ($error['new_password'] === 'format'): ?>
+                <p class="error">パスワードは半角英数字6文字以上、16文字以下で入力してください。</p>
               <?php endif; ?>
             <?php endif; ?>
           </label>

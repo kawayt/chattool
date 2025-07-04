@@ -35,9 +35,9 @@ if (!empty($_POST)) {
     $error['password2'] = 'blank';
   }
 
-  // パスワードは8文字以上
-  if (!empty($_POST['password']) && strlen($_POST['password']) < 8) {
-    $error['password'] = 'length';
+  // パスワードは半角英数字で8桁以上16桁以下
+  if (!empty($_POST['password']) && !preg_match("/\A\w{8,16}\z/", $_POST['password'])) {
+    $error['password'] = 'format';
   }
 
   // 再入力したパスワードが一致するか
@@ -103,8 +103,8 @@ if (isset($_SESSION['join']) && isset($_GET['action']) && $_GET['action'] == 're
               <?php if (!empty($error['password']) && $error['password'] === 'blank'): ?>
                 <p class="error">パスワードを入力してください。</p>
               <?php endif; ?>
-              <?php if (!empty($error['password']) && $error['password'] === 'length'): ?>
-                <p class="error">パスワードは8文字以上で入力してください。</p>
+              <?php if (!empty($error['password']) && $error['password'] === 'format'): ?>
+                <p class="error">パスワードは半角英数字6文字以上、16文字以下で入力してください。</p>
               <?php endif; ?>
             </label>
 
