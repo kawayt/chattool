@@ -14,7 +14,7 @@ if (!empty($_GET)) {
       $error['message'] = 'blank';
     } else {
       // メッセージは500文字まで
-      if (!empty($send_message) && strlen($send_message) >= 500) {
+      if (!empty($send_message) && mb_strlen($send_message, 'UTF-8') >= 500) {
         $error['message'] = 'length';
       }
     }

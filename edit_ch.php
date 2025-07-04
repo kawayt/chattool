@@ -15,13 +15,13 @@ if (!empty($_POST)) {
     $error['chname'] = 'blank';
   } else {
     // チャンネル名は30文字まで
-    if (!empty($_POST['chname']) && strlen($_POST['chname']) >= 30) {
+    if (!empty($_POST['chname']) && mb_strlen($_POST['chname'], 'UTF-8') >= 30) {
       $error['chname'] = 'length';
     }
   }
 
   // チャンネルの説明は100文字まで
-  if (!empty($_POST['chdesc']) && strlen($_POST['chdesc']) >= 100) {
+  if (!empty($_POST['chdesc']) && mb_strlen($_POST['chdesc'], 'UTF-8') >= 100) {
     $error['chdesc'] = 'length';
   }
 

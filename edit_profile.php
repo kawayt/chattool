@@ -14,13 +14,13 @@ if (!empty($_POST)) {
     $error['name'] = 'blank';
   } else {
     // 名前は30文字まで
-    if (!empty($_POST['name']) && strlen($_POST['name']) >= 30) {
+    if (!empty($_POST['name']) && mb_strlen($_POST['name'], 'UTF-8') >= 30) {
       $error['name'] = 'length';
     }
   }
 
   // 自己紹介は100文字まで
-  if (!empty($_POST['bio']) && strlen($_POST['bio']) >= 100) {
+  if (!empty($_POST['bio']) && mb_strlen($_POST['bio'], 'UTF-8') >= 100) {
     $error['bio'] = 'length';
   } else {
     // 空欄の場合は NULL に置換
