@@ -61,6 +61,8 @@ if (!empty($_POST)) {
       <div id="titlebar">
         <h1 id="page-name" class="ellipsis-one-line">チャンネルを作成</h1>
       </div>
+
+      <?php if ($_SESSION['admin'] === 1): ?>
       <div class="scrollable">
         <form action="" method="post" class="main-form">
 
@@ -98,6 +100,9 @@ if (!empty($_POST)) {
 
         </form>
       </div>
+      <?php else: ?>
+        <p id="noauth-error">あなたにはチャンネルを作成する権限がありません</p>
+      <?php endif ?>
     </div>
   </div>
 </body>

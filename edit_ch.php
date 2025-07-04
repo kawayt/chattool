@@ -71,6 +71,8 @@ if (!empty($_POST)) {
       <div id="titlebar">
         <h1 id="page-name" class="ellipsis-one-line">チャンネルを編集: <?= $name; ?></h1>
       </div>
+
+      <?php if ($_SESSION['admin'] === 1): ?>
       <div class="scrollable">
         <form action="" method="post" class="main-form">
 
@@ -137,6 +139,10 @@ if (!empty($_POST)) {
           </div>
         </div>
       </dialog>
+
+      <?php else: ?>
+        <p id="noauth-error">あなたにはチャンネルを編集する権限がありません</p>
+      <?php endif ?>
 
     </div>
   </div>

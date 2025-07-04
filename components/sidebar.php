@@ -40,7 +40,7 @@ $channels = $stmt->fetchAll(PDO::FETCH_ASSOC);
             </div>
           </li>
         <?php endforeach; ?>
-      <?php elseif ($_SESSION['admin'] === 1): ?> <!-- チャンネルがない場合 -->
+      <?php else: ?> <!-- チャンネルがない場合 -->
         <li class="nav-item">
           <div class="nav-div flex ai-center">
             <img class="hash-icon" src="icons/mingcute--add-line.svg">
