@@ -1,5 +1,5 @@
 # チャットツール
-PHP・MySQLの学習で作ったDiscordのようなチャットアプリ
+PHP, MySQL の学習のために作った Discord のようなチャットアプリ
 
 ## 動作環境
 ローカルでテストするには XAMPP などで Apache, MySQL を有効化します。
@@ -18,7 +18,7 @@ chattool/
 │ ├─ head.php（headタグの共通部分）
 │ ├─ sidebar.php（サイドバー）
 │ └─ toast.php（トースト通知）
-├─ icons
+├─ icons/
 ├─ scripts/
 │ ├─ imgPreviewer.js（ファイルアップロード時のプレビュー表示）※1
 │ └─ modal.js（モーダルの制御）
@@ -28,7 +28,7 @@ chattool/
 │ ├─ login.css（ログイン前のページ）
 │ ├─ main.css（ログイン後のページ）
 │ └─ sidebar.css（サイドバー）
-├─ uploads/
+├─ uploads/（プロフィール画像のファイルを格納）
 │ └─ default.svg（プロフィール画像が未設定の場合に表示する画像）
 │
 ├─ advanced_settings.php（高度な設定ページ）
@@ -42,4 +42,4 @@ chattool/
 ├─ main.php（チャットページ）
 └─ register.php（アカウント作成ページ）
 ```
-※1 [ImgPreviewer](https://github.com/yuki00yossi/ImgPreviewer) を利用
+※1 [ImgPreviewer](https://github.com/yuki00yossi/ImgPreviewer)
