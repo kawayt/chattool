@@ -153,6 +153,13 @@
 .message-wrapper:hover .message-action {
   display: block;
 }
+.message-action a img {
+  padding: 3px;
+}
+.message-action a img:hover {
+  background: #ffcaca;
+  border-radius: 50%;
+}
 
 .avatar {
   width: 40px;
